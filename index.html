@@ -7,32 +7,50 @@
     <link href="https://fonts.googleapis.com/css?family=Walter+Turncoat&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
     <title>你畫我猜</title>
 </head>
 <body>
-    
+    <div class="leftBottonCycle pic_poistion"></div>
+    <div class="bonBottonCycle pic_poistion"></div>
+    <div class="centerCycle pic_poistion"></div>
+    <div class="rightCycle pic_poistion"></div>
+    <div class="rightBottonLine pic_poistion"></div>
     <div class="container">
-        <div class="left_Leaderboard"></div>
+        <div class="left_Leaderboard">
+            <div class="playerContainer">
+                <div class="playerPIC"></div>
+                <div class="playerINFO">
+                    <div class="playerName_title">dongFIN</div>
+                    <p class="player_pointText">point：</p>
+                    <p class="scrope">97</p>
+                </div>
+                <div class="paintingNow"></div>
+            </div>
+            <div class="playerContainer">
+                <!-- <img style="border: 1px solid rgb(124, 124, 124);"  height="100%" class="testpic" src="./pic/cycle_pink.png" alt=""> -->
+            </div>
+        </div>
         <div class="right_container">
             <div class="painter_container painting">
                 <div class="painting_table">
-                    <div class="penOReraser">
-                        <div class="choice_type pen"></div>
-                        <div class="choice_type eraser"></div>
-                        <div class="choice_type crash"></div>
-                        <div class="choice_type" style="margin-top:2vw ; height: 12vw; display: flex; flex-direction: column; align-items: center;">
+                    <div class="penOReraser" style="padding-top:2vh">
+                        <div class="choice_type" id="pen"></div>
+                        <div class="choice_type" id="eraser"></div>
+                        <div class="choice_type" id="crash"></div>
+                        <div class="choice_type" style="margin:2vh 0 7vh 0 ; height: 12vw; display: flex; flex-direction: column; align-items: center;">
                             SIZE
-                            <div class="choice_size penSize_L">
+                            <div class="choice_size" id="L">
                                 <svg>
                                     <circle cx="1.5vw" cy="1.5vw" r="10"/>
                                 </svg>
                             </div>
-                            <div class="choice_size penSize_M">
+                            <div class="choice_size" id="M">
                                 <svg>
                                     <circle cx="1.5vw" cy="1.5vw" r="7"/>
                                 </svg>
                             </div>
-                            <div class="choice_size penSize_S">
+                            <div class="choice_size" id="S">
                                 <svg>
                                     <circle cx="1.5vw" cy="1.5vw" r="4"/>
                                 </svg>
@@ -51,17 +69,65 @@
                         <div class="color_part" style="background-color: rgb(0, 0, 0);"></div>
                     </div>
                 </div>
-                <div class="drawBox"></div>
+                <div class="drawBox">
+                    <canvas id="myCanvas"></canvas>
+                    <div class="voteBox">
+                        <p class="chinese voteText">這個一定要投呀</p>
+                        <div class='vote pic_border_norepeat_ab'></div>
+                        <div class="votedCNT">
+                            <p class="voteText chinese">已投：</p>
+                            <p class="nowVoted voteText">10</p>
+                            <p class="voteText chinese" style="margin-left: 5px;"> 剩餘：</p>
+                            <p class="canVite voteText">10</p>
+                        </div>
+                    </div>
+                    <a href="#" class="download pic_border_norepeat_ab" download="pic.png" onclick="this.href=canvas.toDataURL('image/png');" ></a>
+                    <!-- <div class="download pic_border_norepeat_ab"></div> -->
+                </div>
             </div>
             <div class="guest_container">
                 <div class="hintBox">
-                    <div class="chinese">道具提示</div>
+                    <div class="chinese" style="margin-top: 10px;">道具提示</div>
                     <div class="hint"></div>
-                    <div class="chinese">已用：<h4>10</h4></div>
-                    <div class="chinese">剩餘：<h4>10</h4></div>
+                    <!-- <div class="chinese">已用：<h4>10</h4></div> -->
+                    <div class="chinese">剩餘：<h4 class="hintCNT">10</h4></div>
                 </div>
-                <div class="answerBox"></div>
-                <div class="chatingBox"></div>
+                <div class="answerBox">
+                    <div class="title_ans chinese">答案輸這邊喔~</div>
+                    <div class="ans bottonText chinese">
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <!-- <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：00000000000000000000來實現個滾輪000000000000000000000</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p> -->
+                    </div>
+                    <input class="ans_input" type="text" placeholder="輸入答案">
+                    <button class="ans_btn">確認</button>
+                </div>
+                <div class="chatingBox">
+                    <div class="title_chat chinese">這裡聊天喔~</div>
+                    <div class="chat bottonText chinese">
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：00000000000000000000來實現個滾輪000000000000000000000</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p>dongFIN：來實現個滾輪ㄅ</p>
+                        <p style="scroll-snap-align: end;">dongFIN：來實現個滾輪ㄅ</p>
+                    </div>
+                    <input class="chat_input" type="text" placeholder="聊天區">
+                    <button class="chat_btn">確認</button>
+                </div>
             </div>
         </div>
     </div>

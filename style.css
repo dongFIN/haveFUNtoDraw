@@ -3,6 +3,8 @@ body{
     background-color: #EBE8E3;
     display: flex;
     justify-content: center;
+    -webkit-user-select: none;
+    overflow: hidden;
     /* align-content: center; */
 }
 .chinese{
@@ -17,18 +19,113 @@ h4{
     display: inline-block; 
 }
 div{
-    border: 1px solid #4c4c4c;
+    /* border: 1px solid #4c4c4c; */
+}
+.pic_poistion{
+    position: absolute;
+}
+.leftBottonCycle{
+    transform: rotate(-30deg);
+    height: 20vw;
+    width: 20vw;
+    left: -5vw;
+    bottom: -10vh;
+    background-image: url(./pic/cycle_pink.png);
+    background-size: 100%;
+}
+.bonBottonCycle{
+    height: 12vw;
+    width: 12vw;
+    left: 13vw;
+    bottom: -12vh;
+    background-image: url(./pic/cycle_white.png);
+    background-size: 100%;
+}
+.centerCycle{
+    transform: rotate(-150deg);
+    height: 12vw;
+    width: 12vw;
+    left: 58vw;
+    top: 50vh;
+    background-image: url(./pic/cycle_orange.png);
+    background-size: 100%;
+}
+.rightCycle{
+    height: 12vw;
+    width: 12vw;
+    right: -3vw;
+    top: -8vh;
+    background-image: url(./pic/cycle_yellow.png);
+    background-size: 100%;
+}
+.rightBottonLine{
+    height: 12vw;
+    width: 12vw;
+    right: 3vw;
+    bottom: -12vh;
+    background-image: url(./pic/lines_black.png);
+    background-size: 100%;
 }
 .container{
     width: 95%;
     height: 740px;
     display: flex;
     justify-content: space-around;
+    margin-top: 10px;
 }
 .left_Leaderboard{
     width:20%;
     height: 70%;
     background-color: rgba(247, 245, 243, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.playerContainer{
+    border: 2px solid rgb(207, 207, 207);
+    width: 95%;
+    height: 13vh;
+    margin-top: 5px;
+    display: flex;
+    position: relative;
+}
+.playerPIC{
+    width: 35%;
+    /* height: 100%; */
+    /* border: 2px solid rgb(207, 207, 207); */
+    background-image: url(./pic/hacker.png);
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position:center;
+    bottom: 0;
+}
+.playerINFO{
+    /* border: 2px solid rgb(168, 122, 122); */
+    width: 65%;
+    padding: 1vw 0 1vw 1vw;
+}
+.playerName_title{
+    font-size: 1.8em;
+}
+.player_pointText{
+    /* display: inline-block; color: #828282; */
+    font-size: 1.2em;
+    color: rgb(158, 158, 158);
+    line-height: 2em;
+    display: inline-block;
+}
+.scrope{
+    display: inline-block;
+    font-size: 1.4em;
+}
+.paintingNow{
+    position: absolute;
+    width: 3vh;
+    height: 3vh;
+    right: 1vw;
+    bottom: 2.5vh;
+    background-size: 100%;
+    background-image: url(./pic/pencil.png);
 }
 .right_container{
     width: 79%;
@@ -37,9 +134,10 @@ div{
     flex-direction: column;
 }
 .painter_container{
-    height: 63%;
+    height: 60vh;
     display: flex;
     justify-content: space-around;
+    position: relative;
 }
 .painting_table{
     width: 17%;
@@ -54,9 +152,16 @@ div{
     align-items: center;
 }
 .choice_type{
-    width: 4vw;
-    height: 4vw;
-    background-size: 100%;
+    /* padding: 0.5vw; */
+    width: 8vh;
+    height: 8vh;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position:center;
+}
+.choice_type:hover{
+    background-size: 85%;
+    /* background-color: rgba(107, 107, 107, 0.1); */
 }
 .choice_size{
     width: 3vw;
@@ -70,16 +175,74 @@ div{
     align-items: center;
 }
 .color_part{
-    width: 3vw;
-    height: 3vw;
+    width: 5vh;
+    height: 5vh;
     
 }
 .drawBox{
     width: 81%;
+    position: relative;
     background-color: rgba(247, 245, 243, 1);
 }
+.voteBox{
+    position: absolute;
+    right: 0;
+    top: 2vh;
+    width: 12vh;
+    height: 12vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(247, 245, 243, 1);
+    border: 1px solid rgb(207, 207, 207);
+}
+.votedCNT{
+    display: flex;
+
+}
+.voteText{
+    font-size: 0.4em;
+    margin: 5px 0;
+    color: rgb(143, 143, 143);
+}
+.pic_border_norepeat_ab{
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 70%;
+    background-color: rgba(247, 245, 243, 1);
+}
+.vote{
+    width: 7vh;
+    height: 7vh;
+    background-image: url(./pic/archive.png);
+    margin: 0;
+}
+.vote:hover{
+    background-size: 75%;
+}
+.vote:active{
+    background-size: 75%;
+    background-image: url(./pic/archive_c.png);
+}
+.download{
+    position: absolute;
+    right: 0;
+    top: 16vh;
+    width: 7vh;
+    height: 7vh;
+    background-image: url(./pic/download.png);
+    border: 1px solid rgb(207, 207, 207);
+}
+.download:hover{
+    background-size: 80%;
+}
+#myCanvas{
+    width: 100%;
+    height: 100%;
+}
 .guest_container{
-    height: 35%;
+    /* height: 35%; */
+    margin-top: 10px;
     display: flex;
     justify-content: space-around;
 }
@@ -97,24 +260,88 @@ div{
     width: 8vw;
     height: 8vw;
     background-image: url(./pic/faq.png);
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 90%;
+    /* border-radius: 99em; */
+}
+.hint:hover{
     background-size: 100%;
 }
+
 .answerBox{
     width: 40%;
     background-color: rgba(247, 245, 243, 0.9);
+    position: relative;
+    scroll-snap-type: y proximity;
+}
+.title_ans{
+    font-size: 12px;
+    line-height: 22px;
+    padding: 0 10px;
+    position: absolute;
+    top: -1vh;
+    left: 1vw;
+    border-radius: 10px;
+    color: white;
+    background-color:rgb(124, 124, 124);
 }
 .chatingBox{
     width: 40%;
+    position: relative;
     background-color: rgba(247, 245, 243, 0.9);
 }
-.pen{
-    background-image: url("./pic/edit.png");
+.title_chat{
+    font-size: 12px;
+    line-height: 22px;
+    padding: 0 10px;
+    position: absolute;
+    top: -1vh;
+    left: 1vw;
+    border-radius: 15px;
+    color: rgb(124, 124, 124);
+    border: 2px solid rgb(124, 124, 124);
+    background-color: rgba(247, 245, 243, 0.9);
 }
-.eraser{
+.bottonText{
+    height: 75%;
+    width: 90%;
+    margin: 18px 15px 0 20px;
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+}
+input{
+    width: 22vw;
+    line-height: 32px;
+    border: 1px solid silver;
+    border-radius: 20px;
+    margin: 3px 5px;
+    outline: none;
+    padding-left: 10px;
+    font-size: 1em;
+}
+button{
+    background-color: rgb(148, 148, 148);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px;
+    color: rgb(233, 232, 232);
+    outline: none;
+}
+button:hover{
+    background-color: rgb(126, 126, 126);
+}
+#pen{
+    background-image: url("./pic/edit_c.png");
+}
+#eraser{
     background-image: url("./pic/eraser.png");
 }
-.crash{
+#crash{
     background-image: url("./pic/bin.png");
+}
+#crash:active{
+    background-image: url("./pic/bin_c.png");
 }
 
 
